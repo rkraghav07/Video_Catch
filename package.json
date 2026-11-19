@@ -1,0 +1,20 @@
+{
+  "name": "video-downloader-extension",
+  "version": "1.0.0",
+  "description": "A Chrome/Edge (Manifest V3) extension that detects videos playing in the current tab and **pops up asking whether you want to download** them.",
+  "main": "background.js",
+  "scripts": {
+    "setup-ffmpeg": "node setup-ffmpeg.js",
+    "icons": "node generate-icons.js",
+    "postinstall": "node setup-ffmpeg.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ffmpeg/core": "^0.12.6",
+    "@ffmpeg/ffmpeg": "^0.12.10",
+    "@ffmpeg/util": "^0.12.1",
+    "mux.js": "^7.0.3"
+  }
+}

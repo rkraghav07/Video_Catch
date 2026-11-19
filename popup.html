@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="popup.css" />
+    <title>Video Catch</title>
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <div class="logo">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M12 3a1 1 0 0 1 1 1v8.59l2.3-2.3a1 1 0 0 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.42l2.3 2.3V4a1 1 0 0 1 1-1Zm-7 14a1 1 0 0 1 1 1v1h12v-1a1 1 0 1 1 2 0v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1Z"
+            />
+          </svg>
+        </div>
+        <div class="titles">
+          <h1>Video Catch</h1>
+          <span id="count" class="count">scanning…</span>
+        </div>
+      </div>
+      <button id="settingsBtn" class="icon-btn" title="Settings" aria-label="Settings">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3" />
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+        </svg>
+      </button>
+    </header>
+
+    <div id="settings" class="settings hidden">
+      <div class="settings-head">
+        <div class="settings-head-title">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3" />
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+          </svg>
+          <span>Settings</span>
+        </div>
+        <button id="settingsClose" class="settings-close" aria-label="Close settings" title="Close">✕</button>
+      </div>
+      <label class="row">
+        <span>
+          <strong>Auto-prompt</strong>
+          <small>Pop up when a video is detected</small>
+        </span>
+        <input type="checkbox" id="autoPrompt" class="switch" />
+      </label>
+      <label class="row">
+        <span>
+          <strong>Ask where to save</strong>
+          <small>Show "Save as…" dialog (at the start for direct videos)</small>
+        </span>
+        <input type="checkbox" id="askLocation" class="switch" />
+      </label>
+      <label class="row">
+        <span>
+          <strong>Default folder</strong>
+          <small>Subfolder under Downloads — leave blank for Downloads</small>
+        </span>
+        <input type="text" id="subfolder" class="text-input" placeholder="Video Catch" />
+      </label>
+      <label class="row">
+        <span>
+          <strong>Convert to MP4</strong>
+          <small>Clean .mp4 + merge separate audio (ffmpeg)</small>
+        </span>
+        <input type="checkbox" id="convertMp4" class="switch" />
+      </label>
+      <label class="row">
+        <span>
+          <strong>In-video button</strong>
+          <small>Show a "Catch" button when hovering a video</small>
+        </span>
+        <input type="checkbox" id="overlayButton" class="switch" />
+      </label>
+      <label class="row">
+        <span>
+          <strong>Skip ads while capturing</strong>
+          <small>Don't record YouTube ads into the saved file</small>
+        </span>
+        <input type="checkbox" id="skipAds" class="switch" />
+      </label>
+      <label class="row">
+        <span>
+          <strong>Save YouTube as MP4</strong>
+          <small>Forces H.264 (plays everywhere, max 1080p). Off = AV1/4K as .mkv</small>
+        </span>
+        <input type="checkbox" id="captureMp4" class="switch" />
+      </label>
+      <label class="row">
+        <span>
+          <strong>Download speed</strong>
+          <small>More parallel connections = faster</small>
+        </span>
+        <select id="speed" class="speed-select">
+          <option value="normal">Normal (8×)</option>
+          <option value="fast">Fast (16×)</option>
+          <option value="turbo">Turbo (28×)</option>
+        </select>
+      </label>
+    </div>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="videos">Videos</button>
+      <button class="tab" data-tab="downloads">
+        Downloads <span id="dlCount" class="pill hidden">0</span>
+      </button>
+    </nav>
+
+    <!-- Videos tab -->
+    <section id="panel-videos" class="panel">
+      <div id="banner"></div>
+      <div class="paste-box">
+        <div class="paste-row">
+          <input
+            type="text"
+            id="pasteUrl"
+            class="paste-input"
+            placeholder="Paste a video link or page URL…"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button id="pasteGo" class="paste-btn">Get</button>
+        </div>
+        <div id="pasteMsg" class="paste-msg hidden"></div>
+      </div>
+      <div id="pasteResults" class="list"></div>
+      <div id="ytCard" class="yt-card hidden">
+        <div class="yt-top">
+          <div class="yt-logo">▶</div>
+          <div class="yt-info">
+            <div class="yt-title" id="ytTitle">YouTube video</div>
+            <div class="yt-sub">Capture the stream as it plays — works on HD &amp; SABR</div>
+          </div>
+        </div>
+        <div class="yt-stat" id="ytStat">One click — it fast-forwards through the video to grab it, then saves an MP4.</div>
+        <div class="yt-actions">
+          <button id="ytStart" class="yt-btn primary">⬇ Capture full video</button>
+        </div>
+        <div class="yt-range">
+          <label class="yt-range-toggle">
+            <input type="checkbox" id="ytRangeOn" />
+            <span>✂️ Capture only part of it</span>
+          </label>
+          <div id="ytRangeFields" class="yt-range-fields hidden">
+            <label class="yt-range-field">
+              <span>From</span>
+              <input type="text" id="ytRangeStart" class="time-in" placeholder="1:30" autocomplete="off" spellcheck="false" />
+            </label>
+            <label class="yt-range-field">
+              <span>To</span>
+              <input type="text" id="ytRangeEnd" class="time-in" placeholder="4:00" autocomplete="off" spellcheck="false" />
+            </label>
+          </div>
+          <div id="ytRangeHint" class="yt-range-hint hidden">
+            Only this part is buffered &amp; saved — much faster than the full video.
+          </div>
+        </div>
+        <div class="yt-extra">
+          <button id="ytSubs" class="yt-subs-btn">📝 Subtitles / Transcript</button>
+          <button id="ytThumb" class="yt-subs-btn">🖼️ Thumbnail</button>
+        </div>
+      </div>
+      <div id="subsHost"></div>
+      <div id="list" class="list"></div>
+      <div id="empty" class="empty">
+        <div class="empty-icon">🎬</div>
+        <p>No videos yet. Start playing a video on this tab. If it was already playing and doesn't show up, reload the page:</p>
+        <button id="reloadPage" class="reload-page-btn">↻ Reload this page</button>
+      </div>
+      <footer>
+        <button id="clear" class="ghost">Clear</button>
+        <a id="feedback" class="link" title="Request a feature or report a problem">💬 Feedback</a>
+        <a id="reloadPageLink" class="link" title="Reload the page so a video that was already playing gets detected">↻ Reload page</a>
+        <a id="refresh" class="link">Refresh</a>
+      </footer>
+    </section>
+
+    <!-- Downloads tab -->
+    <section id="panel-downloads" class="panel hidden">
+      <div id="dlList" class="list"></div>
+      <div id="dlEmpty" class="empty">
+        <div class="empty-icon">📥</div>
+        <p>No downloads yet. Saved and in-progress videos will appear here.</p>
+      </div>
+      <footer>
+        <button id="clearDownloads" class="ghost">Clear finished</button>
+      </footer>
+    </section>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

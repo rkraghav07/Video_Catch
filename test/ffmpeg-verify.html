@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Video Catch — ffmpeg verification</title>
+    <style>
+      body { font: 14px system-ui; margin: 24px; background: #0f172a; color: #e2e8f0; }
+      h1 { color: #818cf8; }
+      .row { padding: 8px 12px; margin: 6px 0; border-radius: 8px; background: #1e293b; }
+      .ok { border-left: 4px solid #22c55e; }
+      .fail { border-left: 4px solid #ef4444; }
+      .pending { border-left: 4px solid #eab308; }
+      pre { white-space: pre-wrap; color: #94a3b8; font-size: 12px; }
+      img { max-width: 360px; border-radius: 8px; margin-top: 8px; }
+      video, audio { display: block; margin-top: 8px; max-width: 360px; }
+    </style>
+  </head>
+  <body>
+    <h1>Video Catch — ffmpeg.wasm verification</h1>
+    <div id="results"></div>
+    <h3>Outputs</h3>
+    <div id="outputs"></div>
+    <script src="/vendor/ffmpeg/ffmpeg.js"></script>
+    <script src="/test/ffmpeg-verify.js"></script>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+node_modules/
+
+# FFmpeg core is large; regenerate using npm run setup-ffmpeg
+vendor/ffmpeg/ffmpeg-core.wasm
